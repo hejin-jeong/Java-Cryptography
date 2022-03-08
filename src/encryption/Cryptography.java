@@ -68,7 +68,7 @@ public class Cryptography extends Application {
 		Label ptitle = new Label("Plain Text:");
 		Label ctitle = new Label("Cipher Text:");
 
-		// Create the menu containing encryption options
+		// Create the menu containing encryption options.
 		createMenu();
 
 		// Add the buttons and key field to control the encryption and decryption.
@@ -78,7 +78,7 @@ public class Cryptography extends Application {
 		Button clearButton = createClearButton();
 		Label keylbl = new Label("Key:");
 
-		// TODO: Add the clearButton the buttonGroup ***
+		// Add the buttons to the buttonGroup.
 		buttonGroup.getChildren().addAll(encryptButton, decryptButton, encryptionMenu, keylbl, keyField, clearButton);
 
 		// Add all the GUI elements to the display.
@@ -124,7 +124,6 @@ public class Cryptography extends Application {
 	 */
 	private Button createClearButton() {
 		Button clearButton = new Button("Clear");
-		// TODO: Set up the event handler for clearButton***
 		clearButton.setOnMouseClicked(this::clearAll);
 		return clearButton;
 	}
@@ -133,7 +132,6 @@ public class Cryptography extends Application {
 	 * Creates the menu containing the encryption algorithms to choose from.
 	 */
 	private void createMenu() {
-		// TODO: Add 4th encryption option to the menu ***
 		encryptionMenu.getItems().addAll(COPY, CAESAR, SCYTALE, REVERSECAESAR);
 
 		encryptionMenu.setOnAction(this::itemStateChanged);
@@ -147,16 +145,12 @@ public class Cryptography extends Application {
 	 */
 	private void selectEncryption(String selected) {
 		if (selected.equals(COPY)) {
-			// TODO: Replace with code to do encryption
 			es = new Copy();
 		} else if (selected.equals(CAESAR)) {
-			// TODO: Replace with code to do encryption
 			es = new Caesar();
 		} else if (selected.equals(SCYTALE)) {
-			// TODO: Replace with code to do encryption
 			es = new Scytale();
-		} // TODO: Add the code to do encryption
-		else {
+		} else {
 			es = new ReverseCaesar();
 		}
 	}
@@ -169,8 +163,6 @@ public class Cryptography extends Application {
 	 * @return the encrypted text
 	 */
 	private String encryptWithKey(String plainText, int key) {
-		// TODO: Replace with code to do the encryption and return the encrypted
-		// string.***
 		return es.encrypt(plainText, key);
 	}
 
@@ -182,8 +174,6 @@ public class Cryptography extends Application {
 	 * @return the decrypted text
 	 */
 	private String decryptWithKey(String cipherText, int key) {
-		// TODO: Replace with code to do the decryption and return the unencrypted ***
-		// string.
 		return es.decrypt(cipherText, key);
 	}
 
@@ -239,8 +229,6 @@ public class Cryptography extends Application {
 	 * 
 	 * @param evt
 	 */
-	// TODO : Define a method here that clears all input boxes (text areas, text
-	// fields & combo box) ***
 	public void clearAll(MouseEvent evt) {
 
 		plainTextArea.setText("");
