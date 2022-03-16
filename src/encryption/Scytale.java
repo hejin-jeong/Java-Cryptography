@@ -50,15 +50,46 @@ public class Scytale implements EncryptionStrategy {
 
 		String decryptedText = "";
 
-		int rows = cipherText.length() / key;
-		for (int i = 0; i < rows; i++) {
-			for (int j = i; j < cipherText.length(); j += rows) {
-				decryptedText += cipherText.charAt(j);
+		// If all cells of the table are filled with the letters or space
+		if (cipherText.length() % key == 0) {
+			int rows = cipherText.length() / key;
+			for (int i = 0; i < rows; i++) {
+				for (int j = i; j < cipherText.length(); j += rows) {
+					decryptedText += cipherText.charAt(j);
+				}
+			}
+		}
+		// If there are empty cells in the last row of the table
+		else {
+			int rows = (cipherText.length() / key) + 1;
+			for (int i = 0; i < rows; i++) {
+				int count = 0;
+				int j = i;
+
+				// If it is the last row
+				if (j == rows - 1) {
+					while (count < cipherText.length() % key) {
+						decryptedText += cipherText.charAt(j);
+						j += rows;
+						count++;
+					}
+				}
+				// If it is not the last row
+				else {
+					while (count < cipherText.length() % key && j < cipherText.length()) {
+						decryptedText += cipherText.charAt(j);
+						j += rows;
+						count++;
+					}
+					while (j < cipherText.length()) {
+						decryptedText += cipherText.charAt(j);
+						j += (rows - 1);
+					}
+				}
 			}
 		}
 
-		// Return by trimming the white space at the right end
-		return decryptedText.replaceAll("\\s+$", "");
+		return decryptedText;
 	}
 
 }
